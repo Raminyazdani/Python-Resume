@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass, field
 
 
@@ -13,6 +14,9 @@ class FlamesData:
     FLAMES = ("FRIENDS", "LOVERS", "AFFECTIONATE", "MARRIAGE", "ENEMIES", "SIBLINGS")
 
     def result(self):
+        if self.can_play() == False:
+            return "Please enter two names"
+
         if self.flames_result:
             return self.flames_result
         else:
@@ -28,10 +32,19 @@ class FlamesData:
         else:
             return False
 
-# todo define function to get a name from input
+    def print(self,msg=None):
+        os.system("clear")
+        print(f"name 1 : {self.name_1} and {self.name_2} are {self.result()}")
+        if msg:
+            print(msg)
+
 def get_name():
     while True:
         temp = input("Enter your name: ")
+        if temp.isalpha():
+            return temp
+        else:
+            print("Please enter a valid name")
 
 # todo process name : function gets two names and remove duplicated letters from them and return one list
 def process_name(name1: str, name2: str) -> list:
