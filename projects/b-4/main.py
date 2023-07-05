@@ -58,10 +58,13 @@ def process_name(name1: str, name2: str) -> list:
     return result
 
 
-# todo process flames : function gets a list of letters and return the result of flames game
 def process_flames(letters: list) -> str:
-    pass
-
+    temp = FlamesData.FLAMES
+    while len(temp) > 1:
+        index = len(letters) % len(temp)
+        temp = temp[index:] + temp[:index]
+        temp.pop()
+    return temp[0]
 # todo main
 if __name__ == '__main__':
     pass
