@@ -38,7 +38,7 @@ class FlamesData:
         if msg:
             print(msg)
 
-def get_name():
+def get_name()->str:
     while True:
         temp = input("Enter your name: ")
         if temp.isalpha():
@@ -46,9 +46,17 @@ def get_name():
         else:
             print("Please enter a valid name")
 
-# todo process name : function gets two names and remove duplicated letters from them and return one list
 def process_name(name1: str, name2: str) -> list:
-    pass
+    temp_name_1 = sorted(list(name1.lower().replace(" ", "")))
+    temp_name_2 = sorted(list(name2.lower().replace(" ", "")))
+    result = temp_name_1
+    for l in temp_name_2:
+        if l in result:
+            result.remove(l)
+        else:
+            result.append(l)
+    return result
+
 
 # todo process flames : function gets a list of letters and return the result of flames game
 def process_flames(letters: list) -> str:
